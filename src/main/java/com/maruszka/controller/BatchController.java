@@ -6,7 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.maruszka.entity.Batch;
 import com.maruszka.services.BatchService;
@@ -26,5 +29,46 @@ public class BatchController {
 		theModel.addAttribute("batches", theBatches);
 		
 		return "batch-list";
+	}
+	
+	@GetMapping("/showAddBatchForm")
+	public String showAddBatchForm(Model theModel) {
+		
+		// create model attribute to bind form data
+		Batch theBatch = new Batch();
+		
+		theModel.addAttribute("batch", theBatch);
+		
+		return "batch-form";
+	}
+	
+	@PostMapping("/saveBatch")
+	public String saveBatch(@ModelAttribute("batch") Batch theBatch) {
+		
+		batchService.saveBatch(theBatch);
+		
+		return "redirect:/batch/list";
+	}
+	
+	@GetMapping("/showBatchUpdateForm")
+	public String showBatchUpdateForm(@RequestParam("batchId") int theId, Model theModel) {
+		
+		// get batch form our service
+		Batch theBatch = batchService.getBatch(theId);
+		
+		// set  as a model to prepopulate the form
+		theModel.addAttribute("batch", theBatch);
+
+		return "batch-form";
+	}
+	
+	@GetMapping("/delete")
+	public String deleteBatch(@RequestParam("batchId") int theId ) {
+		
+		// delete batch
+		batchService.deleteBatch(theId);
+		
+		return "redirect:/batch/list";
+		
 	}
 }

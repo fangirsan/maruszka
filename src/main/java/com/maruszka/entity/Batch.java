@@ -129,7 +129,7 @@ public class Batch {
 				+ batchName + ", batchCreationDate=" + batchCreationDate + ", malts=" + malts + "]";
 	}
 	
-	// add a convenience method
+	// add a convenience method to add malt list
 	public void addMalt(Malt theMalt) {
 		
 		if (malts == null) {

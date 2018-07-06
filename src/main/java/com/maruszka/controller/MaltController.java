@@ -69,7 +69,6 @@ public class MaltController {
 		theModel.addAttribute("malt", theMalt);
 
 		return "malt-form";
-		
 	}
 	
 	@GetMapping("/delete")
@@ -81,8 +80,4 @@ public class MaltController {
 		return "redirect:/malt/list";
 		
 	}
-	
-	
-	
-	
 }
