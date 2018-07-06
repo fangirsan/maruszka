@@ -48,18 +48,18 @@
 					</tr>
 					<tr>
 						<td><label>Batch creation date:</label></td>
-						<td><form:input path="batchCreationDate"/></td>
+						<td><form:input type="date" path="batchCreationDate"/></td>
 					</tr>
-					<tr>
+					<!-- http://www.kscodes.com/spring-mvc/spring-mvc-select-tag-example/ -->
+					<!-- tr>
 						<td><label>Malts:</label></td>
 						<td>
-							<!-- http://www.kscodes.com/spring-mvc/spring-mvc-select-tag-example/ -->
 						  	<form:select path="malts" multiple="true">
-						     	 <form:option value="" />
+						     	<form:option value="" />
 						      	<form:options items="${maltList}"/>
                           	</form:select>
-						 </td>
-					</tr>
+						</td>
+					</tr-->
 					<tr>
 						<td><label></label></td>
 						<td><input type="submit" value="Save"/></td>

@@ -2,8 +2,10 @@ package com.maruszka.config;
 
 import java.beans.PropertyVetoException;
 import java.util.Properties;
+import java.util.TimeZone;
 import java.util.logging.Logger;
 
+import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 
 import org.hibernate.SessionFactory;
@@ -206,6 +208,12 @@ public class AppConfig implements WebMvcConfigurer {
         messageSource.setBasename("/resources/messages/");
         return messageSource;
     }  
+	
+	// Setup project time to UTC
+	@PostConstruct
+	public void init() {
+		TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
+	}
 
 }
 

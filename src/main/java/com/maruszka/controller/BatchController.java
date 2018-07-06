@@ -47,8 +47,14 @@ public class BatchController {
 		return "batch-form";
 	}
 	
+	// mapping is related to action in a form
+	// responsible to add batch.
+	// ModelAttribute "batch" is also related to the 
+	// model attribute in a form
 	@PostMapping("/saveBatch")
 	public String saveBatch(@ModelAttribute("batch") Batch theBatch) {
+		
+//		theBatch.addMalt(malt);
 		
 		batchService.saveBatch(theBatch);
 		

@@ -51,7 +51,7 @@ public class BatchDAOImpl implements BatchDAO {
 
 		Session currentSession = sessionFactory.getCurrentSession();
 		
-		Query theQuery = currentSession.createQuery("delete FROM Batch where=:batchId");
+		Query theQuery = currentSession.createQuery("delete FROM Batch where id=:batchId");
 		theQuery.setParameter("batchId", theId);
 		
 		theQuery.executeUpdate();

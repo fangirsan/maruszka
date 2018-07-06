@@ -24,7 +24,6 @@
 			   onclick="window.location.href='showAddHopForm'; return false;"
 		/>
 		
-		
 		<!-- add html table here -->
 		<table>
 			<tr>
@@ -63,7 +62,6 @@
 								   onclick="if (!(confirm('Are you sure you want to delete this hop?'))) return false">Delete</a>
 					</td>
 				</tr>
-			
 			</c:forEach>
 			
 		</table>

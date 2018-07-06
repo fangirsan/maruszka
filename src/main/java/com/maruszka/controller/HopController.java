@@ -23,7 +23,6 @@ import com.maruszka.services.HopService;
 @RequestMapping("/hop")
 public class HopController {
 
-	// need to inject malt service
 	@Autowired
 	private HopService hopService;
 	
@@ -32,10 +31,8 @@ public class HopController {
 	@GetMapping("/list")
 	public String listHops(Model theModel) {
 		
-		// get malt from service
 		List<Hop> theHops = hopService.getHops();
 		
-		// add the malts to the model
 		theModel.addAttribute("hops", theHops);
 		
 		return "hops-list";
@@ -71,7 +68,6 @@ public class HopController {
 		}
 	}
 	
-	
 	@GetMapping("/showHopUpdateForm")
 	public String showMaltUpdateForm(@RequestParam("hopId") int theId,
 									 Model theModel) {
@@ -83,7 +79,6 @@ public class HopController {
 		theModel.addAttribute("hop", theHop);
 
 		return "hop-form";
-		
 	}
 	
 	@GetMapping("/delete")
@@ -93,7 +88,6 @@ public class HopController {
 		hopService.deleteHop(theId);
 		
 		return "redirect:/hop/list";
-		
 	}
 	
 	@ModelAttribute("countryList")

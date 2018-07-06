@@ -18,6 +18,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name="batch")
 public class Batch {
@@ -50,11 +52,14 @@ public class Batch {
 	@Column(name="batch_name")
 	private String batchName;
 	
-	@Column(name="batch_creation_date", columnDefinition="DATE")
-	@Temporal(TemporalType.TIMESTAMP)
+//	@Column(name="batch_creation_date", columnDefinition="DATE")
+	@Column(name="batch_creation_date")
+	// TemporalType define displayed format of date
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern="dd-MM-yyyy")
 	private Date batchCreationDate;
 	
-	@ManyToMany(fetch=FetchType.LAZY,
+	@ManyToMany(fetch=FetchType.EAGER,
 				cascade= {CascadeType.PERSIST, CascadeType.MERGE,
 						  CascadeType.DETACH, CascadeType.REFRESH})
 	@JoinTable(
