@@ -41,4 +41,10 @@ public class MaltServiceImpl implements MaltService {
 		maltDAO.deleteMalt(theId);
 	}
 
+	@Override
+	@Transactional
+	public List<Malt> getMaltsNames() {
+		return maltDAO.getMaltsNames();
+	}
+
 }

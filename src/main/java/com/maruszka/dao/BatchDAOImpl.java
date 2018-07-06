@@ -34,7 +34,6 @@ public class BatchDAOImpl implements BatchDAO {
 		Session currentSession = sessionFactory.getCurrentSession();
 		
 		currentSession.saveOrUpdate(theBatch);
-		
 	}
 
 	@Override
@@ -56,7 +55,6 @@ public class BatchDAOImpl implements BatchDAO {
 		theQuery.setParameter("batchId", theId);
 		
 		theQuery.executeUpdate();
-		
 	}
 
 }

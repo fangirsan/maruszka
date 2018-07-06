@@ -60,7 +60,6 @@
 						<td>
 						  Yes <form:radiobutton path="hopTaste" value="Yes" />
                           No <form:radiobutton path="hopTaste" value="No" />
-                          <!-- form:input path="hopTaste"/ -->
 						</td>
 						<td><form:errors path="hopTaste" cssClass="error" /></td>
 					</tr>
@@ -71,13 +70,11 @@
                             No <form:radiobutton path="hopAroma" value="No" />
                         </td>
                         <td><form:errors path="hopAroma" cssClass="error" /></td>
-						<!--<form:input path="hopAroma"/>-->
 					</tr>
 					<tr>
 						<td><label>Origin:</label></td>
 						<td>
-						  <!-- form:input path="hopOrigin"/-->
-						  <form:select path="hopOrigin">
+						  <form:select path="hopOrigin" multiple="false">
 						      <form:option value="" label="...." />
 						      <form:options items="${countryList}"/>
                           </form:select>

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.maruszka.dao.MaltDAO;
+import com.maruszka.entity.Country;
 import com.maruszka.entity.Malt;
 
 @Repository
@@ -42,7 +43,6 @@ public class MaltDAOImpl implements MaltDAO {
 		
 		// save or update malt
 		currentSession.saveOrUpdate(theMalt);
-
 	}
 
 	@Override
@@ -69,7 +69,18 @@ public class MaltDAOImpl implements MaltDAO {
 		theQuery.setParameter("maltId", theId);
 		
 		theQuery.executeUpdate();
+	}
+
+	@Override
+	public List<Malt> getMaltsNames() {
+
+		Session currentSession = sessionFactory.getCurrentSession();
 		
+		Query<Malt> theQuery = currentSession.createQuery("SELECT maltName FROM Malt");
+		
+		List<Malt> maltsNames = theQuery.getResultList();
+		
+		return maltsNames;
 	}
 
 }

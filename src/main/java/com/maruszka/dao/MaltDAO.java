@@ -13,4 +13,6 @@ public interface MaltDAO {
 	public Malt getMalt(int theId);
 	
 	public void deleteMalt(int theId);
+
+	public List<Malt> getMaltsNames();
 }

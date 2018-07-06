@@ -13,4 +13,5 @@ public interface BatchService {
 	public Batch getBatch(int theId);
 	
 	public void deleteBatch(int theId);
+
 }

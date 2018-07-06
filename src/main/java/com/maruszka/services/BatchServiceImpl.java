@@ -39,4 +39,5 @@ public class BatchServiceImpl implements BatchService {
 	public void deleteBatch(int theId) {
 		batchDAO.deleteBatch(theId);
 	}
+
 }

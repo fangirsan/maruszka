@@ -97,7 +97,7 @@ public class HopController {
 	}
 	
 	@ModelAttribute("countryList")
-	public List<Country> getCountry()	{
+	public List<Country> getCountriesNames()	{
 		
 		List<Country> countriesNames = countryService.getCoutriesNames();
 

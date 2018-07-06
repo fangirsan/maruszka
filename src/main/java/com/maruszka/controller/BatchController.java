@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.maruszka.entity.Batch;
+import com.maruszka.entity.Malt;
 import com.maruszka.services.BatchService;
+import com.maruszka.services.MaltService;
 
 @Controller
 @RequestMapping("/batch")
@@ -20,6 +22,9 @@ public class BatchController {
 
 	@Autowired
 	private BatchService batchService;
+	
+	@Autowired
+	private MaltService maltService;
 	
 	@GetMapping("/list")
 	public String getBatches(Model theModel) {
@@ -69,6 +74,13 @@ public class BatchController {
 		batchService.deleteBatch(theId);
 		
 		return "redirect:/batch/list";
+	}
+	
+	@ModelAttribute("maltList")
+	public List<Malt> getMaltsNames()	{
 		
+		List<Malt> maltsNames = maltService.getMaltsNames();
+
+		return maltsNames;
 	}
 }

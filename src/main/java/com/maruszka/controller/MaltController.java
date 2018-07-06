@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.maruszka.entity.Batch;
 import com.maruszka.entity.Country;
 import com.maruszka.entity.Malt;
 import com.maruszka.services.CountryService;
@@ -78,6 +79,6 @@ public class MaltController {
 		maltService.deleteMalt(theId);
 		
 		return "redirect:/malt/list";
-		
 	}
+	
 }
