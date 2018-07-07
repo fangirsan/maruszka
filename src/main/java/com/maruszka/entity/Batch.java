@@ -1,7 +1,7 @@
 package com.maruszka.entity;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -15,8 +15,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -55,9 +53,9 @@ public class Batch {
 //	@Column(name="batch_creation_date", columnDefinition="DATE")
 	@Column(name="batch_creation_date")
 	// TemporalType define displayed format of date
-	@Temporal(TemporalType.DATE)
+//	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern="dd-MM-yyyy")
-	private Date batchCreationDate;
+	private LocalDate  batchCreationDate;
 	
 	@ManyToMany(fetch=FetchType.EAGER,
 				cascade= {CascadeType.PERSIST, CascadeType.MERGE,
@@ -73,7 +71,7 @@ public class Batch {
 		
 	}
 
-	public Batch(int batchNumber, String batchStyle, String batchName, Date batchCreationDate) {
+	public Batch(int batchNumber, String batchStyle, String batchName, LocalDate  batchCreationDate) {
 		this.batchNumber = batchNumber;
 		this.batchStyle = batchStyle;
 		this.batchName = batchName;
@@ -112,11 +110,11 @@ public class Batch {
 		this.batchName = batchName;
 	}
 
-	public Date getBatchCreationDate() {
+	public LocalDate  getBatchCreationDate() {
 		return batchCreationDate;
 	}
 
-	public void setBatchCreationDate(Date batchCreationDate) {
+	public void setBatchCreationDate(LocalDate  batchCreationDate) {
 		this.batchCreationDate = batchCreationDate;
 	}
 

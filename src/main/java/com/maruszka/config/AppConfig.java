@@ -210,10 +210,10 @@ public class AppConfig implements WebMvcConfigurer {
     }  
 	
 	// Setup project time to UTC
-	@PostConstruct
-	public void init() {
-		TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
-	}
+//	@PostConstruct
+//	public void init() {
+//		TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
+//	}
 
 }
 
