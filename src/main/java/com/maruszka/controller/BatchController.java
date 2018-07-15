@@ -2,9 +2,13 @@ package com.maruszka.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,6 +29,14 @@ public class BatchController {
 	
 	@Autowired
 	private MaltService maltService;
+	
+//	@Autowired
+//	BatchFormValidator batchFormValidator;
+//	
+//	@InitBinder
+//	protected void initBinder(WebDataBinder binder) {
+//		binder.setValidator(batchFormValidator);
+//	}
 	
 	@GetMapping("/list")
 	public String getBatches(Model theModel) {
@@ -52,13 +64,22 @@ public class BatchController {
 	// ModelAttribute "batch" is also related to the 
 	// model attribute in a form
 	@PostMapping("/saveBatch")
-	public String saveBatch(@ModelAttribute("batch") Batch theBatch) {
+	public String saveBatch(@Valid @ModelAttribute("batch") Batch theBatch, BindingResult theBindingResult) {
 		
-//		theBatch.addMalt(malt);
-		
-		batchService.saveBatch(theBatch);
-		
-		return "redirect:/batch/list";
+		if (theBindingResult.hasErrors()) {
+	        return "batch-form";
+	    }
+		else {
+			try {
+				batchService.saveBatch(theBatch);
+				
+				return "redirect:/batch/list";
+				
+			} catch (DataIntegrityViolationException e) {
+				theBindingResult.rejectValue("batchNumber", "batchNumber.error", "Invalid number");
+		        return "batch-form";
+		    }
+		}
 	}
 	
 	@GetMapping("/showBatchUpdateForm")

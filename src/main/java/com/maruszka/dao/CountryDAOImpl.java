@@ -39,6 +39,18 @@ public class CountryDAOImpl implements CountryDAO {
 		
 		return countriesNames;
 	}
+	
+	@Override
+	public List<Integer> getCoutriesId() {
+		
+		Session currentSession = sessionFactory.getCurrentSession();
+		
+		Query<Integer> theQuery = currentSession.createQuery("SELECT id FROM Country");
+		
+		List<Integer> countriesId = theQuery.getResultList();
+		
+		return countriesId;
+	}
 
 	@Override
 	public void saveCountry(Country theCountry) {

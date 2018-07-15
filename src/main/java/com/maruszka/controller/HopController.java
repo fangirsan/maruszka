@@ -54,14 +54,12 @@ public class HopController {
 	// ModelAttribute "hop" is also related to the 
 	// model attribute in a form
 	@PostMapping("/saveHop")
-	public String saveHop(@Valid @ModelAttribute("hop") Hop theHop,
-						  BindingResult theBindingResult) {
+	public String saveHop(@Valid @ModelAttribute("hop") Hop theHop, BindingResult theBindingResult) {
 		
 		if (theBindingResult.hasErrors()) {
 			return "hop-form";
 		}
 		else {
-			
 			hopService.saveHop(theHop);
 			
 			return "redirect:/hop/list";

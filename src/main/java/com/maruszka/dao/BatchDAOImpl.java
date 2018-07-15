@@ -2,6 +2,7 @@ package com.maruszka.dao;
 
 import java.util.List;
 
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -21,7 +22,7 @@ public class BatchDAOImpl implements BatchDAO {
 		
 		Session currentSession = sessionFactory.getCurrentSession();
 		
-		Query<Batch> theQuery = currentSession.createQuery("from Batch order by batchName", Batch.class);
+		Query<Batch> theQuery = currentSession.createQuery("from Batch order by batchNumber", Batch.class);
 		
 		List<Batch> batches = theQuery.getResultList();
 		
@@ -42,6 +43,10 @@ public class BatchDAOImpl implements BatchDAO {
 		Session currentSession = sessionFactory.getCurrentSession();
 		
 		Batch theBatch = currentSession.get(Batch.class, theId);
+		
+		if(theBatch!=null){
+            Hibernate.initialize(theBatch.getMalts());
+        }
 		
 		return theBatch;
 	}

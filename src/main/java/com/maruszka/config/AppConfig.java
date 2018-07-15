@@ -202,12 +202,21 @@ public class AppConfig implements WebMvcConfigurer {
     }	
 	
 	// add support for custom message
+//	@Bean
+//    public MessageSource messageSource() { 
+//        ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
+//        messageSource.setBasename("/resources/messages/");
+//        return messageSource;
+//    }  
+	
 	@Bean
-    public MessageSource messageSource() { 
-        ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
-        messageSource.setBasename("/resources/messages/");
-        return messageSource;
-    }  
+    public ResourceBundleMessageSource messageSource() {
+        ResourceBundleMessageSource source = new ResourceBundleMessageSource();
+//        source.setBasename("/messages/messages.properties");
+        source.setBasename("classpath:messages/messages.properties_pl");
+        source.setUseCodeAsDefaultMessage(true);
+        return source;
+    }
 	
 	// Setup project time to UTC
 //	@PostConstruct

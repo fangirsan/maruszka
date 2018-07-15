@@ -10,6 +10,8 @@ public interface CountryDAO {
 	
 	public List<Country> getCoutriesNames();
 	
+	public List<Integer> getCoutriesId();
+	
 	public void saveCountry (Country theCountry);
 	
 	public Country getCountry(int theId);

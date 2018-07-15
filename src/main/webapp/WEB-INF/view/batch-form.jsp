@@ -37,24 +37,29 @@
 					<tr>
 						<td><label>Batch number:</label></td>
 						<td><form:input path="batchNumber"/></td>
+						<td><form:errors path="batchNumber" cssClass="error" /></td>
 					</tr>
 					<tr>
 						<td><label>Batch style:</label></td>
 						<td><form:input path="batchStyle"/></td>
+						<td><form:errors path="batchStyle" cssClass="error" /></td>
 					</tr>
 					<tr>
 						<td><label>Batch name:</label></td>
 						<td><form:input path="batchName"/></td>
+						<td><form:errors path="batchName" cssClass="error" /></td>
 					</tr>
 					<tr>
 						<td><label>Batch creation date:</label></td>
 						<td><form:input type="date" path="batchCreationDate"/></td>
+						<td><form:errors path="batchCreationDate" cssClass="error" /></td>
 					</tr>
 					<!-- http://www.kscodes.com/spring-mvc/spring-mvc-select-tag-example/ -->
+					<!-- http://websystique.com/springmvc/springmvc-hibernate-many-to-many-example-annotation-using-join-table/ -->
 					<!-- tr>
 						<td><label>Malts:</label></td>
 						<td>
-						  	<form:select path="malts" multiple="true">
+						  	<form:select path="malts" multiple="true" itemValue="id">
 						     	<form:option value="" />
 						      	<form:options items="${maltList}"/>
                           	</form:select>
@@ -64,6 +69,8 @@
 						<td><label></label></td>
 						<td><input type="submit" value="Save"/></td>
 					</tr>
+					
+					
 				</tbody>
 			</table>
 			

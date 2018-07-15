@@ -1,4 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
@@ -37,6 +38,7 @@
 					<tr>
 						<td><label>Country name:</label></td>
 						<td><form:input path="countryName"/></td>
+						<td><form:errors path="countryName" cssClass="error" /></td>
 					</tr>
 					<tr>
 						<td><label></label></td>

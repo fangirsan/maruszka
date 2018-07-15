@@ -27,7 +27,7 @@ public class Hop {
 	@Column(name="id")
 	private int id;
 
-	@NotNull(message="This fild is required")
+	@NotNull(message="This field is required")
 	@Size(min=1, max=15, message="The hop name must not be null")
 	@Column(name="hop_name")
 	private String hopName;
@@ -37,23 +37,23 @@ public class Hop {
 	private BigDecimal alphaAcidMin;
 	
 	@DecimalMin(value="1", message="Value must be greater than 0")
-	@NotNull(message="This fild is required")
+	@NotNull(message="This field is required")
 	@Column(name="alpha_acid_max")
 	private BigDecimal alphaAcidMax;
 	
 //	@Type(type="yes_no")
 //	, columnDefinition = "char"
-	@NotNull(message="This fild is required")
+	@NotNull(message="This field is required")
 	@Column(name="hop_taste")
 	private String hopTaste;
 	
 //	@Type(type="yes_no")
-	@NotNull(message="This fild is required")
+	@NotNull(message="This field is required")
 	@Column(name="hop_aroma")
 //	, columnDefinition = "char"
 	private String hopAroma;
 	
-	@NotNull(message="This fild is required")
+	@NotNull(message="This field is required")
 	@Column(name="hop_origin")
 	private String hopOrigin;
 	

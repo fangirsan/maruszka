@@ -1,5 +1,7 @@
 package com.maruszka.entity;
 
+// http://www.mkyong.com/spring-mvc/spring-mvc-form-handling-example/
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +17,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -22,42 +27,29 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Table(name="batch")
 public class Batch {
 
-	// annotate the class as an entity and map to db table
-	
-	// define the fields
-	
-	// annotate the fields with db column names
-	
-	// ** set up mapping to InstructorDetail entity
-	
-	// create constructors
-	
-	// generate getter/setter methods
-	
-	// generate toString() method
-	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
 	private int id;
 	
+//	@NotNull(message="This field is required")
+	@Min(value=1, message="Invalid number")
 	@Column(name="batch_number")
-	private int batchNumber;
+	private Integer batchNumber;
 	
+	@NotNull(message="This field is required")
+	@Size(min=1, message="This field is required")
 	@Column(name="batch_style")
 	private String batchStyle;
 	
 	@Column(name="batch_name")
 	private String batchName;
 	
-//	@Column(name="batch_creation_date", columnDefinition="DATE")
 	@Column(name="batch_creation_date")
-	// TemporalType define displayed format of date
-//	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern="dd-MM-yyyy")
 	private LocalDate  batchCreationDate;
 	
-	@ManyToMany(fetch=FetchType.EAGER,
+	@ManyToMany(fetch=FetchType.LAZY,
 				cascade= {CascadeType.PERSIST, CascadeType.MERGE,
 						  CascadeType.DETACH, CascadeType.REFRESH})
 	@JoinTable(
@@ -86,11 +78,11 @@ public class Batch {
 		this.id = id;
 	}
 
-	public int getBatchNumber() {
+	public Integer getBatchNumber() {
 		return batchNumber;
 	}
 
-	public void setBatchNumber(int batchNumber) {
+	public void setBatchNumber(Integer batchNumber) {
 		this.batchNumber = batchNumber;
 	}
 

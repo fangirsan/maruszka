@@ -115,12 +115,10 @@ LOCK TABLE `yeast` WRITE;
     PRIMARY KEY (`batch_id`, `malt_id`),
     
     -- fk_[referencing table name]_[referenced table name]_[referencing field name]
-    CONSTRAINT `FK_BATCH_MALT_ID` FOREIGN KEY (`malt_id`)
-    REFERENCES `malt` (`id`)
+    CONSTRAINT FK_BATCH_MALT_ID FOREIGN KEY (malt_id) REFERENCES malt (id)
     ON DELETE NO ACTION ON UPDATE NO ACTION,
     
-    CONSTRAINT `FK_MALT_BATCH_ID` FOREIGN KEY (`batch_id`)
-    REFERENCES `batch` (`id`)
+    CONSTRAINT `FK_MALT_BATCH_ID` FOREIGN KEY (`batch_id`) REFERENCES `batch` (`id`)
     ON DELETE NO ACTION ON UPDATE NO ACTION
  ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
  
