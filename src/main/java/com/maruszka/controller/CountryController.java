@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -28,6 +29,7 @@ import com.maruszka.services.CountryService;
 
 /*
  *  https://kodowaniedoszuflady.pl/java/obsluga-wyjatkow-w-spring-mvc/
+ *  https://www.boraji.com/spring-4-mvc-form-validation-example-using-validator-interface
  */
 
 @Controller
@@ -81,10 +83,8 @@ public class CountryController {
 				
 				return "redirect:/country/list";
 				
-			} catch (DataIntegrityViolationException e) {
-				
-				theBindingResult.rejectValue("countryName", "countryName.error", "Invalid country name");
-				
+			} catch (ConstraintViolationException e) {
+				theBindingResult.rejectValue("countryName", "duplicate", "Duplicate country name");
 		        return "country-form";
 			}
 		}

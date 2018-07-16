@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
@@ -75,9 +76,10 @@ public class BatchController {
 				
 				return "redirect:/batch/list";
 				
-			} catch (DataIntegrityViolationException e) {
-				theBindingResult.rejectValue("batchNumber", "batchNumber.error", "Invalid number");
+			} catch (ConstraintViolationException e) {
+				theBindingResult.rejectValue("batchNumber", "duplicate", "Invalid number");
 		        return "batch-form";
+		        
 		    }
 		}
 	}

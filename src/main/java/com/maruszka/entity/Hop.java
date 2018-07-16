@@ -32,7 +32,6 @@ public class Hop {
 	@Column(name="hop_name")
 	private String hopName;
 	
-//	@Pattern(regexp="\\d{1,2}[\\.{0,1}]\\d{0,2}", message="Use '.' to separate digits")
 	@Column(name="alpha_acid_min")
 	private BigDecimal alphaAcidMin;
 	
@@ -41,16 +40,12 @@ public class Hop {
 	@Column(name="alpha_acid_max")
 	private BigDecimal alphaAcidMax;
 	
-//	@Type(type="yes_no")
-//	, columnDefinition = "char"
 	@NotNull(message="This field is required")
 	@Column(name="hop_taste")
 	private String hopTaste;
 	
-//	@Type(type="yes_no")
 	@NotNull(message="This field is required")
 	@Column(name="hop_aroma")
-//	, columnDefinition = "char"
 	private String hopAroma;
 	
 	@NotNull(message="This field is required")

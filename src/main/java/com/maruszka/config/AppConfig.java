@@ -15,11 +15,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.core.env.Environment;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.validation.Validator;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -209,14 +212,41 @@ public class AppConfig implements WebMvcConfigurer {
 //        return messageSource;
 //    }  
 	
+//	@Bean
+//    public ResourceBundleMessageSource messageSource() {
+//        ResourceBundleMessageSource source = new ResourceBundleMessageSource();
+////        source.setBasename("/messages/messages.properties");
+//        source.setBasename("classpath:messages.properties");
+//        source.setUseCodeAsDefaultMessage(true);
+//        return source;
+//    }
+	
+//	@Bean
+//	   public MessageSource messageSource() {
+//	      ResourceBundleMessageSource source = new ResourceBundleMessageSource();
+//	      source.setBasename("classpath*:messages");
+//	      return source;
+//	   }
+	
 	@Bean
-    public ResourceBundleMessageSource messageSource() {
-        ResourceBundleMessageSource source = new ResourceBundleMessageSource();
-//        source.setBasename("/messages/messages.properties");
-        source.setBasename("classpath:messages/messages.properties_pl");
-        source.setUseCodeAsDefaultMessage(true);
-        return source;
-    }
+	  public MessageSource messageSource() {
+	      ReloadableResourceBundleMessageSource bean = new ReloadableResourceBundleMessageSource();
+	      bean.setBasename("classpath:messages");
+	      bean.setDefaultEncoding("UTF-8");
+	      return bean;
+	  }
+
+	  @Bean
+	  public LocalValidatorFactoryBean validator() {
+	      LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
+	      bean.setValidationMessageSource(messageSource());
+	      return bean;
+	  }
+
+//	  @Override
+//	  public Validator getValidator() {
+//	      return validator();
+//	  }
 	
 	// Setup project time to UTC
 //	@PostConstruct

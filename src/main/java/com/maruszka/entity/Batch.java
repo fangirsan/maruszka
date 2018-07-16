@@ -32,8 +32,8 @@ public class Batch {
 	@Column(name="id")
 	private int id;
 	
-//	@NotNull(message="This field is required")
-	@Min(value=1, message="Invalid number")
+	@NotNull(message="{NotNull.batch.batchNumber}")
+	@Min(value=1, message="{Min.batch.batchNumber}")
 	@Column(name="batch_number")
 	private Integer batchNumber;
 	
