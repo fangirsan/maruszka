@@ -5,6 +5,24 @@ SET FOREIGN_KEY_CHECKS=0;
 
 -- Create tables
 
+-- mal_manufacturermalt_manufacturermalt_manufacturer
+DROP TABLE IF EXISTS `malt_manufacturer`;
+CREATE TABLE `malt_manufacturer` (
+	`id` int(11) NOT NULL AUTO_INCREMENT,
+	`manufacturer_name` varchar(45) NOT NULL,
+	PRIMARY KEY (`id`),
+	UNIQUE KEY (`manufacturer_name`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1; 
+
+LOCK TABLE `malt_manufacturer` WRITE;
+
+INSERT INTO `malt_manufacturer` VALUES
+  (1, 'Weyerman'),
+  (2, 'Strzegom'),
+  (3, 'Malteurop');
+  
+UNLOCK TABLES;
+
 -- country
 DROP TABLE IF EXISTS `country`;
 CREATE TABLE `country` (

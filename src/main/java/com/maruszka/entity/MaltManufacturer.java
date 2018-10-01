@@ -10,9 +10,9 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name="country")
-public class Country {
-
+@Table(name="malt_manufacturer")
+public class MaltManufacturer {
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
@@ -20,16 +20,16 @@ public class Country {
 	
 	@NotNull(message="This field is required")
 	@Size(min=1, message="This field is required")
-	@Column(name="country_name")
-	private String countryName;
-	
-	public Country() {
+	@Column(name="manufacturer_name")
+	private String maltManufacturer;
 
+	public MaltManufacturer() {
+		
 	}
 
-	public Country(int id, String countryName) {
+	public MaltManufacturer(int id, String maltManufacturer) {
 		this.id = id;
-		this.countryName = countryName;
+		this.maltManufacturer = maltManufacturer;
 	}
 
 	public int getId() {
@@ -40,16 +40,16 @@ public class Country {
 		this.id = id;
 	}
 
-	public String getCountryName() {
-		return countryName;
+	public String getMaltManufacturer() {
+		return maltManufacturer;
 	}
 
-	public void setCountryName(String countryName) {
-		this.countryName = countryName;
+	public void setMaltManufacturer(String maltManufacturer) {
+		this.maltManufacturer = maltManufacturer;
 	}
 
 	@Override
 	public String toString() {
-		return "Country [id=" + id + ", countryName=" + countryName + "]";
+		return "MaltManufacturer [id=" + id + ", maltManufacturer=" + maltManufacturer + "]";
 	}
 }
