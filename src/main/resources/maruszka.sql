@@ -33,7 +33,7 @@ CREATE TABLE `batch` (
     `batch_name` varchar(45) DEFAULT NULL,
     `batch_creation_date` DATE,
     PRIMARY KEY (`id`),
-    UNIQUE KEY(`batch_number`)
+    --UNIQUE KEY(`batch_number`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;    
 
 LOCK TABLE `batch` WRITE;

@@ -2,9 +2,13 @@ package com.maruszka.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -53,11 +57,22 @@ public class MaltController {
 	// ModelAttribute "malt" is also related to the 
 	// model attribute in a form
 	@PostMapping("/saveMalt")
-	public String saveMalt(@ModelAttribute("malt") Malt theMalt) {
+	public String saveMalt(@Valid @ModelAttribute("malt") Malt theMalt, BindingResult theBindingResult) {
 		
-		maltService.saveMalt(theMalt);
+		if (theBindingResult.hasErrors()) {
+			return "malt-form";
+		}
+		else {
+			try {
+				maltService.saveMalt(theMalt);
+				
+				return "redirect:/malt/list";
+			} catch (ConstraintViolationException e) {
+				theBindingResult.rejectValue("maltName", "duplicate", "Duplicate name");
+				return "malt-form";
+			}
+		}
 		
-		return "redirect:/malt/list";
 	}
 	
 	@GetMapping("/showMaltUpdateForm")

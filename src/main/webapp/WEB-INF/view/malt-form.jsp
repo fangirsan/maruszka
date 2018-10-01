@@ -37,6 +37,7 @@
 					<tr>
 						<td><label>Malt name:</label></td>
 						<td><form:input path="maltName"/></td>
+						<td><form:errors path="maltName" cssClass="error" /></td>
 					</tr>
 					<tr>
 						<td><label>Manufacturer:</label></td>

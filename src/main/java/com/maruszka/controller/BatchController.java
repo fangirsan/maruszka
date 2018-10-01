@@ -15,11 +15,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.util.NestedServletException;
 
 import com.maruszka.entity.Batch;
 import com.maruszka.entity.Malt;
 import com.maruszka.services.BatchService;
 import com.maruszka.services.MaltService;
+import com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping;
 
 @Controller
 @RequestMapping("/batch")
@@ -78,8 +80,8 @@ public class BatchController {
 				
 			} catch (ConstraintViolationException e) {
 				theBindingResult.rejectValue("batchNumber", "duplicate", "Invalid number");
+//				theBindingResult.rejectValue(null, null, null);
 		        return "batch-form";
-		        
 		    }
 		}
 	}
