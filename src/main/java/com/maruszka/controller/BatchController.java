@@ -80,7 +80,6 @@ public class BatchController {
 				
 			} catch (ConstraintViolationException e) {
 				theBindingResult.rejectValue("batchNumber", "duplicate", "Invalid number");
-//				theBindingResult.rejectValue(null, null, null);
 		        return "batch-form";
 		    }
 		}

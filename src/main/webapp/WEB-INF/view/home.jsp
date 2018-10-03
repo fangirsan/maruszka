@@ -21,6 +21,10 @@
         <br>
         
         <a href="${pageContext.request.contextPath}/batch/list">Batch list</a>
+        
+        <br>
+        
+        <a href="${pageContext.request.contextPath}/maltManufacturer/list">Malt Manufacturer list</a>
 	
 	</div>
 

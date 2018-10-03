@@ -21,15 +21,15 @@ public class MaltManufacturer {
 	@NotNull(message="This field is required")
 	@Size(min=1, message="This field is required")
 	@Column(name="manufacturer_name")
-	private String maltManufacturer;
+	private String manufacturerName;
 
 	public MaltManufacturer() {
 		
 	}
 
-	public MaltManufacturer(int id, String maltManufacturer) {
+	public MaltManufacturer(int id, String manufacturerName) {
 		this.id = id;
-		this.maltManufacturer = maltManufacturer;
+		this.manufacturerName = manufacturerName;
 	}
 
 	public int getId() {
@@ -40,16 +40,16 @@ public class MaltManufacturer {
 		this.id = id;
 	}
 
-	public String getMaltManufacturer() {
-		return maltManufacturer;
+	public String getManufacturerName() {
+		return manufacturerName;
 	}
 
-	public void setMaltManufacturer(String maltManufacturer) {
-		this.maltManufacturer = maltManufacturer;
+	public void setManufacturerName(String manufacturerName) {
+		this.manufacturerName = manufacturerName;
 	}
 
 	@Override
 	public String toString() {
-		return "MaltManufacturer [id=" + id + ", maltManufacturer=" + maltManufacturer + "]";
+		return "MaltManufacturer [id=" + id + ", manufacturerName=" + manufacturerName + "]";
 	}
 }

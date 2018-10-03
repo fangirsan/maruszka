@@ -15,10 +15,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.maruszka.entity.Batch;
-import com.maruszka.entity.Country;
 import com.maruszka.entity.Malt;
-import com.maruszka.services.CountryService;
+import com.maruszka.entity.MaltManufacturer;
+import com.maruszka.services.MaltManufacturerService;
 import com.maruszka.services.MaltService;
 
 @Controller
@@ -28,6 +27,9 @@ public class MaltController {
 	// need to inject malt service
 	@Autowired
 	private MaltService maltService;
+	
+	@Autowired
+	private MaltManufacturerService maltManufacturerService;
 	
 	@GetMapping("/list")
 	public String listMalts(Model theModel) {
@@ -72,7 +74,6 @@ public class MaltController {
 				return "malt-form";
 			}
 		}
-		
 	}
 	
 	@GetMapping("/showMaltUpdateForm")
@@ -94,6 +95,14 @@ public class MaltController {
 		maltService.deleteMalt(theId);
 		
 		return "redirect:/malt/list";
+	}
+	
+	@ModelAttribute("MaltManufacturerList")
+	public List<MaltManufacturer> getMaltManufacturerNames()	{
+		
+		List<MaltManufacturer> maltManufacturerNames = maltManufacturerService.getMaltManufacturerNames();
+
+		return maltManufacturerNames;
 	}
 	
 }

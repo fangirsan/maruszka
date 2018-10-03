@@ -7,7 +7,6 @@ import javax.validation.Valid;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -100,9 +99,9 @@ public class CountryController {
 		
 		List<Integer> theCountriesId = countryService.getCoutriesId();
 		
-		for (Integer id : theCountriesId) {
-			System.out.println("\nID: " + id);
-		}
+//		for (Integer id : theCountriesId) {
+//			System.out.println("\nID: " + id);
+//		}
 		
 		if ( (!theCountriesId.contains(new Integer(theId)) ) || ( theId < 0 ) ) {
 			throw new CountryNotFoundException("Country id not found - " + theId);
@@ -120,33 +119,33 @@ public class CountryController {
 		return "redirect:/country/list";
 	}
 	
-	// Add an exception handler using @ExceptionHandler
-	@ExceptionHandler
-	public ResponseEntity<CountryErrorResponse> handleException(CountryNotFoundException exc) {
-	
-		// create a CountryErrorResponse
-		CountryErrorResponse error = new CountryErrorResponse();
-		
-		error.setStatus(HttpStatus.NOT_FOUND.value());
-		error.setMessage(exc.getMessage());
-		error.setTimeStamp(System.currentTimeMillis());
-		
-		// return ResponseEntity
-		return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
-	}
-	
-	// add another exception handler... to catch any exception (catch all)
-	@ExceptionHandler
-	public ResponseEntity<CountryErrorResponse> handleException(Exception exc) {
-		
-		// create a CountryErrorResponse
-		CountryErrorResponse error = new CountryErrorResponse();
-		
-		error.setStatus(HttpStatus.BAD_GATEWAY.value());
-		error.setMessage(exc.getMessage());
-		error.setTimeStamp(System.currentTimeMillis());
-		
-		// return ResponseEntity
-		return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
-	}
+//	// Add an exception handler using @ExceptionHandler
+//	@ExceptionHandler
+//	public ResponseEntity<CountryErrorResponse> handleException(CountryNotFoundException exc) {
+//	
+//		// create a CountryErrorResponse
+//		CountryErrorResponse error = new CountryErrorResponse();
+//		
+//		error.setStatus(HttpStatus.NOT_FOUND.value());
+//		error.setMessage(exc.getMessage());
+//		error.setTimeStamp(System.currentTimeMillis());
+//		
+//		// return ResponseEntity
+//		return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+//	}
+//	
+//	// add another exception handler... to catch any exception (catch all)
+//	@ExceptionHandler
+//	public ResponseEntity<CountryErrorResponse> handleException(Exception exc) {
+//		
+//		// create a CountryErrorResponse
+//		CountryErrorResponse error = new CountryErrorResponse();
+//		
+//		error.setStatus(HttpStatus.BAD_GATEWAY.value());
+//		error.setMessage(exc.getMessage());
+//		error.setTimeStamp(System.currentTimeMillis());
+//		
+//		// return ResponseEntity
+//		return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+//	}
 }
