@@ -1,6 +1,7 @@
 package com.maruszka.entity;
 
 // http://www.mkyong.com/spring-mvc/spring-mvc-form-handling-example/
+// https://www.thoughts-on-java.org/hibernate-tips-map-bidirectional-many-many-association/
 
 import java.time.LocalDate;
 import java.util.ArrayList;

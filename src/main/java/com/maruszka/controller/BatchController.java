@@ -5,23 +5,24 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.hibernate.exception.ConstraintViolationException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.util.NestedServletException;
 
 import com.maruszka.entity.Batch;
 import com.maruszka.entity.Malt;
 import com.maruszka.services.BatchService;
 import com.maruszka.services.MaltService;
-import com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping;
 
 @Controller
 @RequestMapping("/batch")
@@ -36,10 +37,13 @@ public class BatchController {
 //	@Autowired
 //	BatchFormValidator batchFormValidator;
 //	
-//	@InitBinder
-//	protected void initBinder(WebDataBinder binder) {
-//		binder.setValidator(batchFormValidator);
-//	}
+	@InitBinder
+	public void initBinder(WebDataBinder dataBinder) {
+		
+		StringTrimmerEditor stringTrimerEditor = new StringTrimmerEditor(true);
+		
+		dataBinder.registerCustomEditor(String.class, stringTrimerEditor);
+	}
 	
 	@GetMapping("/list")
 	public String getBatches(Model theModel) {
@@ -79,7 +83,10 @@ public class BatchController {
 				return "redirect:/batch/list";
 				
 			} catch (ConstraintViolationException e) {
-				theBindingResult.rejectValue("batchNumber", "duplicate", "Invalid number");
+				theBindingResult.rejectValue("batchNumber", "duplicate", "Duplicate batch number");
+		        return "batch-form";
+		    } catch (DataIntegrityViolationException  e) {
+		    	theBindingResult.rejectValue("batchNumber", "duplicate", "Duplicate batch number");
 		        return "batch-form";
 		    }
 		}

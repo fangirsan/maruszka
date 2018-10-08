@@ -2,6 +2,8 @@ package com.maruszka.services;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,7 +26,7 @@ public class BatchServiceImpl implements BatchService {
 
 	@Override
 	@Transactional
-	public void saveBatch(Batch theBatch) {
+	public void saveBatch(@Valid Batch theBatch) {
 		batchDAO.saveBatch(theBatch);
 	}
 
