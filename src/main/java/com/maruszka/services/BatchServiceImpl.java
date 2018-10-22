@@ -35,6 +35,12 @@ public class BatchServiceImpl implements BatchService {
 	public Batch getBatch(int theId) {
 		return batchDAO.getBatch(theId);
 	}
+	
+	@Override
+	@Transactional
+	public Batch getBatchByNumber(int batchNumber) {
+		return batchDAO.getBatchByNumber(batchNumber);
+	}
 
 	@Override
 	@Transactional
@@ -42,4 +48,9 @@ public class BatchServiceImpl implements BatchService {
 		batchDAO.deleteBatch(theId);
 	}
 
+	@Override
+	public boolean isBatchNumberUnique(Integer id, Integer batchNumber) {
+		Batch batch = getBatchByNumber(batchNumber);
+        return ( batch == null || ((id != null) && (batch.getId() == id)));
+	}
 }

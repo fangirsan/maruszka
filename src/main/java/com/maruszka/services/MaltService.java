@@ -12,6 +12,8 @@ public interface MaltService {
 	
 	public Malt getMalt(int theId);
 	
+	public Malt getMaltbyName(String maltName);
+	
 	public void deleteMalt(int theId);
 
 	public List<Malt> getMaltsNames();

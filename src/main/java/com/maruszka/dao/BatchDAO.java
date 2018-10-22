@@ -14,5 +14,7 @@ public interface BatchDAO {
 	
 	public Batch getBatch(int theId);
 	
+	public Batch getBatchByNumber(int batchNumber);
+	
 	public void deleteBatch(int theId);
 }

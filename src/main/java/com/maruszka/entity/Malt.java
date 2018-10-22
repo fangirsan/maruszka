@@ -13,7 +13,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
+//TODO: add validators for malt
 @Entity
 @Table(name="malt")
 public class Malt {
@@ -21,9 +25,11 @@ public class Malt {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
-	private int id;
+	private Integer id;
 	
-	@Column(name="malt_name")
+	@NotNull(message="{NotNull.malt.maltName}")
+	@Size(min=3, message="{Size.malt.maltName}")
+	@Column(name="malt_name", unique=true)
 	private String maltName;
 	
 	@Column(name="malt_manufacturer")
@@ -60,11 +66,11 @@ public class Malt {
 		this.maltUsage = maltUsage;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -121,5 +127,36 @@ public class Malt {
 		return "Malt [id=" + id + ", maltName=" + maltName + ", maltManufacturer=" + maltManufacturer + ", maltFilling="
 				+ maltFilling + ", maltEbc=" + maltEbc + ", maltUsage=" + maltUsage + ", batches=" + batches + "]";
 	}
+	
+	@Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        result = prime * result + ((maltName == null) ? 0 : maltName.hashCode());
+        return result;
+    }
+	
+	@Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (!(obj instanceof Malt))
+            return false;
+        Malt other = (Malt) obj;
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
+            return false;
+        if (maltName == null) {
+            if (other.maltName != null)
+                return false;
+        } else if (!maltName.equals(other.maltName))
+            return false;
+        return true;
+    }
 	
 }

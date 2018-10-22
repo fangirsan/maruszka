@@ -51,7 +51,7 @@ CREATE TABLE `batch` (
     `batch_name` varchar(45) DEFAULT NULL,
     `batch_creation_date` DATE,
     PRIMARY KEY (`id`),
-    --UNIQUE KEY(`batch_number`)
+    UNIQUE KEY(`batch_number`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;    
 
 LOCK TABLE `batch` WRITE;
@@ -139,6 +139,8 @@ LOCK TABLE `yeast` WRITE;
     CONSTRAINT `FK_MALT_BATCH_ID` FOREIGN KEY (`batch_id`) REFERENCES `batch` (`id`)
     ON DELETE NO ACTION ON UPDATE NO ACTION
  ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+ 
+
  
  -- join table for batch - hop
  DROP TABLE if EXISTS `batch_hop`;

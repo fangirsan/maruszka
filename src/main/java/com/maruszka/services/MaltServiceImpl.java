@@ -34,6 +34,12 @@ public class MaltServiceImpl implements MaltService {
 	public Malt getMalt(int theId) {
 		return maltDAO.getMalt(theId);
 	}
+	
+	@Override
+	@Transactional
+	public Malt getMaltbyName(String maltName) {
+		return maltDAO.getMaltByName(maltName);
+	}
 
 	@Override
 	@Transactional
@@ -46,5 +52,4 @@ public class MaltServiceImpl implements MaltService {
 	public List<Malt> getMaltsNames() {
 		return maltDAO.getMaltsNames();
 	}
-
 }

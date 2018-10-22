@@ -13,7 +13,7 @@ import com.maruszka.entity.Country;
 import com.maruszka.entity.Malt;
 
 @Repository
-public class MaltDAOImpl implements MaltDAO {
+public class MaltDAOImpl extends AbstractDao<Integer, Malt> implements MaltDAO {
 
 	// need to inject the session factory
 	@Autowired
@@ -57,6 +57,18 @@ public class MaltDAOImpl implements MaltDAO {
 		// get the result
 		return theMalt;
 	}
+	
+	@Override
+	public Malt getMaltByName(String maltName) {
+		// get the current hibernate session
+		Session currentSession = sessionFactory.getCurrentSession();
+		
+		// retrieve from DB using malt name
+		Malt theMalt = currentSession.get(Malt.class, maltName);
+		
+		// get the result
+		return theMalt;
+	}
 
 	@Override
 	public void deleteMalt(int theId) {
@@ -70,7 +82,7 @@ public class MaltDAOImpl implements MaltDAO {
 		
 		theQuery.executeUpdate();
 	}
-
+	
 	@Override
 	public List<Malt> getMaltsNames() {
 

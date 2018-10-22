@@ -29,7 +29,7 @@
 		
 		<form:form action="saveMalt" modelAttribute="malt" method="POST">
 		
-		    <!-- need to associate this data with malt id -->
+		    <!-- need to associate this data with malt manufacturer list id -->
             <form:hidden path="id" />
 		
 			<table>
@@ -41,7 +41,13 @@
 					</tr>
 					<tr>
 						<td><label>Manufacturer:</label></td>
-						<td><form:input path="maltManufacturer"/></td>
+						<!-- td><form:input path="maltManufacturer"/></td-->
+						<td>
+						  <form:select path="maltManufacturer" multiple="false">
+						      <form:option value="" label="...." />
+						      <form:options items="${maltManufacturerList}"/>
+                          </form:select>
+						</td>
 					</tr>
 					<tr>
 						<td><label>Filling:</label></td>

@@ -29,7 +29,7 @@
 		
 		<form:form action="saveBatch" modelAttribute="batch" method="POST">
 		
-		    <!-- need to associate this data with malt id -->
+		    <!-- need to associate this data with batch id -->
             <form:hidden path="id" />
 		
 			<table>
@@ -56,20 +56,20 @@
 					</tr>
 					<!-- http://www.kscodes.com/spring-mvc/spring-mvc-select-tag-example/ -->
 					<!-- http://websystique.com/springmvc/springmvc-hibernate-many-to-many-example-annotation-using-join-table/ -->
-					<!-- tr>
+					<tr>
 						<td><label>Malts:</label></td>
 						<td>
-						  	<form:select path="malts" multiple="true" itemValue="id">
+						  	<form:select path="malts" multiple="true" itemValue="id" itemLabel="maltName" items="${maltList}">
 						     	<form:option value="" />
-						      	<form:options items="${maltList}"/>
+						      	
                           	</form:select>
 						</td>
-					</tr-->
+					</tr>
 					<tr>
 						<td><label></label></td>
 						<td><input type="submit" value="Save"/></td>
 					</tr>
-					
+				
 					
 				</tbody>
 			</table>

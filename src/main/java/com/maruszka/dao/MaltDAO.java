@@ -13,6 +13,9 @@ public interface MaltDAO {
 	public Malt getMalt(int theId);
 	
 	public void deleteMalt(int theId);
+	
+	public Malt getMaltByName(String maltName);
 
 	public List<Malt> getMaltsNames();
+
 }

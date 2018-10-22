@@ -14,6 +14,10 @@ public interface BatchService {
 	
 	public Batch getBatch(int theId);
 	
+	public Batch getBatchByNumber(int batchNumber);
+	
 	public void deleteBatch(int theId);
+	
+	boolean isBatchNumberUnique(Integer id, Integer batchNumber);
 
 }

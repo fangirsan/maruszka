@@ -1,8 +1,6 @@
 package com.maruszka.test;
 
-import java.util.Date;
 import java.util.List;
-
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -10,7 +8,6 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 
 import com.maruszka.entity.Batch;
-import com.maruszka.entity.Country;
 import com.maruszka.entity.Malt;
 
 public class CreateBatchAndMalt {

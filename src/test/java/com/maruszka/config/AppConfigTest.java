@@ -38,7 +38,7 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 @EnableTransactionManagement
 @ComponentScan(basePackages="com.maruszka")
 @PropertySource("classpath:persistence-mysql.properties")
-public class AppConfig implements WebMvcConfigurer {
+public class AppConfigTest implements WebMvcConfigurer {
 
 	// set up variable to hold the properties
 	// dataSource is using this to bootstrap DB properties
