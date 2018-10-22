@@ -97,7 +97,7 @@ public class MaltController {
 		return "redirect:/malt/list";
 	}
 	
-	@ModelAttribute("MaltManufacturerList")
+	@ModelAttribute("maltManufacturerList")
 	public List<MaltManufacturer> getMaltManufacturerNames()	{
 		
 		List<MaltManufacturer> maltManufacturerNames = maltManufacturerService.getMaltManufacturerNames();
